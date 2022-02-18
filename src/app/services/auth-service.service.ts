@@ -13,6 +13,7 @@ import {
   updateEmail,
 } from '@angular/fire/auth';
 import { userInfo } from 'os';
+import {ProfileUser} from '../models/User.model';
 
 import { concatMap, from, Observable, of, switchMap } from 'rxjs';
 
@@ -40,10 +41,11 @@ export class AuthServiceService {
 
   getUserInfo(): any{
     var user = this.auth.currentUser;
-    console.log(user);
+    // console.log(user);
     // updateCurrentUser(this.auth, {email: "some email"})
-    console.log(getAuth().currentUser);
+    // console.log(getAuth().currentUser);
     // return userInfo();
+    return getAuth().currentUser;
   }
 
   // updateUserEmail(email: string): Observable<any> {
@@ -56,4 +58,16 @@ export class AuthServiceService {
 // }));
   
   // }
+
+      updateProfile(profileData: Partial<ProfileUser>): Observable<any> {
+    const user = this.auth.currentUser;
+    console.log(user);
+    return of(user).pipe(
+      concatMap((user) => {
+        if (!user) throw new Error('Not authenticated');
+
+        return updateProfile(user, profileData);
+      })
+    );
+  }
 }

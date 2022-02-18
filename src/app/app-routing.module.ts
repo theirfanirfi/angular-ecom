@@ -11,6 +11,7 @@ import {ProductComponent} from './product/product.component';
 import {CheckoutComponent} from './checkout/checkout.component';
 import {CartComponent} from './cart/cart.component';
 import { PaymentComponent } from './payment/payment.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 import {
@@ -29,6 +30,7 @@ const routes: Routes = [
   {path: 'cart', component: CartComponent, ...canActivate(redirectUnauthorizedToLogin),},
   {path: 'checkout', component: CheckoutComponent, ...canActivate(redirectUnauthorizedToLogin),},
   {path: 'payment', component: PaymentComponent, ...canActivate(redirectUnauthorizedToLogin),},
+  {path: 'profile', component: ProfileComponent, ...canActivate(redirectUnauthorizedToLogin),},
 ];
 
 @NgModule({
@@ -37,4 +39,5 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 export const routingComponents = [LoginScreenComponent, SignUpScreenComponent, HomeComponent, 
-  TopbarComponent, ProductListComponent, FooterComponent, ProductComponent, CartComponent, CheckoutComponent, PaymentComponent]
+  TopbarComponent, ProductListComponent, FooterComponent, ProductComponent, CartComponent, 
+  CheckoutComponent, PaymentComponent, ProfileComponent]

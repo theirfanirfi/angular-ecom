@@ -1,0 +1,53 @@
+<app-topbar></app-topbar>
+
+<!-- Start Checkout -->
+<section class="shop checkout section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-12">
+                <div class="checkout-form">
+                    <h2>Profile</h2>
+                    <!-- Form -->
+                    <form [formGroup]="form" (ngSubmit)="onSubmit($event, user$)" class="form">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <label>Full Name<span>*</span></label>
+                                    <input type="text" name="displayName" placeholder="" formControlName="displayName"
+                                        required="required">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <label>Email Address<span>*</span></label>
+                                    <input type="email" name="email" placeholder="" formControlName="email"
+                                        required="required">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <label>Password<span>*</span></label>
+                                    <input type="password" name="password" formControlName="password" placeholder=""
+                                        required="required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+
+                                    <button type="submit" class="btn btn-primary">Update Profile</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ End Checkout -->
+
+<app-footer></app-footer>
