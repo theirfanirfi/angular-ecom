@@ -12,6 +12,7 @@ import {
   getAuth,
   updateEmail,
 } from '@angular/fire/auth';
+import { userInfo } from 'os';
 
 import { concatMap, from, Observable, of, switchMap } from 'rxjs';
 
@@ -35,6 +36,14 @@ export class AuthServiceService {
   }
     logout(): Observable<any> {
     return from(this.auth.signOut());
+  }
+
+  getUserInfo(): any{
+    var user = this.auth.currentUser;
+    console.log(user);
+    // updateCurrentUser(this.auth, {email: "some email"})
+    console.log(getAuth().currentUser);
+    // return userInfo();
   }
 
   // updateUserEmail(email: string): Observable<any> {

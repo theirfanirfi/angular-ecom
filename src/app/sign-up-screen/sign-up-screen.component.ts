@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import {Router} from '@angular/router';
 
 import{AuthServiceService} from '../services/auth-service.service'
+import {UsersService} from '../services/user.service';
 
 @Component({
   selector: 'app-sign-up-screen',
@@ -13,7 +14,7 @@ export class SignUpScreenComponent implements OnInit {
 
 
     form = new FormGroup({
-            // "fullname": new FormControl("", Validators.required),
+            "fullname": new FormControl("", Validators.required),
             "email": new FormControl("", Validators.required),
             "password": new FormControl("", Validators.required),
     });
@@ -22,8 +23,11 @@ export class SignUpScreenComponent implements OnInit {
 
         if (this.form.status == "VALID"){
                this.auth.signUp(this.form.value.email, this.form.value.password).subscribe(data=>{
-                 console.log(data);
+                 let uid = data.user.uid;
+                 let email = this.form.value.email;
+
                  if(data){
+                   this.usersService.addUser({ uid, email, displayName: this.form.value.fullname })
                    this.router.navigate(['/home']);
                  }
                }, 
@@ -38,7 +42,7 @@ export class SignUpScreenComponent implements OnInit {
   ngOnInit(): void {
   }
 
-    constructor(private auth: AuthServiceService, private router: Router) { 
+    constructor(private auth: AuthServiceService, private router: Router, private usersService: UsersService) { 
     }
 
 }

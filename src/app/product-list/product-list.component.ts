@@ -25,4 +25,8 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  addToCart(){
+    alert('Product added to cart');
+  }
+
 }

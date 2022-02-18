@@ -7,6 +7,12 @@ import { HomeComponent } from './home/home.component';
 import {TopbarComponent} from './topbar/topbar.component';
 import {ProductListComponent} from './product-list/product-list.component';
 import { FooterComponent } from './footer/footer.component';
+import {ProductComponent} from './product/product.component';
+import {CheckoutComponent} from './checkout/checkout.component';
+import {CartComponent} from './cart/cart.component';
+import { PaymentComponent } from './payment/payment.component';
+
+
 import {
   canActivate,
   redirectLoggedInTo,
@@ -19,6 +25,10 @@ const routes: Routes = [
   {path: 'signup', component: SignUpScreenComponent,  ...canActivate(redirectLoggedInToHome)},
   {path: '', component: HomeComponent, ...canActivate(redirectUnauthorizedToLogin),},
   {path: 'home', component: HomeComponent, ...canActivate(redirectUnauthorizedToLogin),},
+  {path: 'product', component: ProductComponent, ...canActivate(redirectUnauthorizedToLogin),},
+  {path: 'cart', component: CartComponent, ...canActivate(redirectUnauthorizedToLogin),},
+  {path: 'checkout', component: CheckoutComponent, ...canActivate(redirectUnauthorizedToLogin),},
+  {path: 'payment', component: PaymentComponent, ...canActivate(redirectUnauthorizedToLogin),},
 ];
 
 @NgModule({
@@ -26,4 +36,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [LoginScreenComponent, SignUpScreenComponent, HomeComponent, TopbarComponent, ProductListComponent, FooterComponent]
+export const routingComponents = [LoginScreenComponent, SignUpScreenComponent, HomeComponent, 
+  TopbarComponent, ProductListComponent, FooterComponent, ProductComponent, CartComponent, CheckoutComponent, PaymentComponent]

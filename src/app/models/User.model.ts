@@ -1,6 +1,10 @@
-export class User {
-  key?: string | null;
-  fullname?: string;
+export interface ProfileUser {
+  uid: string;
   email?: string;
-  password?: string;
+  firstName?: string;
+  lastName?: string;
+  displayName?: string;
+  phone?: string;
+  address?: string;
+  photoURL?: string;
 }
