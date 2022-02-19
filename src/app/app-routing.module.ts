@@ -26,7 +26,7 @@ const routes: Routes = [
   {path: 'signup', component: SignUpScreenComponent,  ...canActivate(redirectLoggedInToHome)},
   {path: '', component: HomeComponent, ...canActivate(redirectUnauthorizedToLogin),},
   {path: 'home', component: HomeComponent, ...canActivate(redirectUnauthorizedToLogin),},
-  {path: 'product', component: ProductComponent, ...canActivate(redirectUnauthorizedToLogin),},
+  {path: 'product/:id', component: ProductComponent, ...canActivate(redirectUnauthorizedToLogin),},
   {path: 'cart', component: CartComponent, ...canActivate(redirectUnauthorizedToLogin),},
   {path: 'checkout', component: CheckoutComponent, ...canActivate(redirectUnauthorizedToLogin),},
   {path: 'payment', component: PaymentComponent, ...canActivate(redirectUnauthorizedToLogin),},

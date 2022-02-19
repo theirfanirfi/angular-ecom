@@ -1,32 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import {Product} from '../product/Product'
+import { Product } from '../models/Product.model'
+import { CartService } from '../services/cart.service'
+import { ProductService } from '../services/product.service'
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  products = [
-    {id: 1, title: "Women Hot Collection", price: 29, image: ""},
-    {id: 2, title: 'Awesome Pink Show', price: 29, image: ''},
-    {id: 3, title: 'Awesome Bags Collection', price: 29, image: ''},
-    {id: 4, title: 'Women Pant Collectons', price: 29, image: ''},
-    {id: 5, title: 'Awesome Cap For Women', price: 29, image: ''},
-    {id: 6, title: 'Polo Dress For Women', price: 29, image: ''},
-    {id: 7, title: 'Black Sunglass For Women', price: 29, image: ''},
-    {id: 8, title: 'Women Pant Collectons', price: 29, image: ''},
-  ];
 
-  customer = "Irfan";
+  products: Product[] = [];
+  count: number = 1;
 
-  constructor() { 
+  constructor(private cart: CartService, productService: ProductService) {
+    this.products = productService.productsDatabase();
+    console.log(this.products);
   }
 
   ngOnInit(): void {
+    // console.log(this.products[this.products.length - 1]);
   }
 
-  addToCart(){
-    alert('Product added to cart');
+  addToCart(product: Product): void {
+    this.cart.addToCart(product, Number(this.count));
+    alert('Product added to cart successfully');
   }
 
 }

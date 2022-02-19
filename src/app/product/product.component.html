@@ -14,7 +14,7 @@
         </div>
         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
             <div class="quickview-content">
-                <h2>Flared Shift Dress</h2>
+                <h2>{{product.title}}</h2>
                 <div class="quickview-ratting-review">
                     <div class="quickview-ratting-wrap">
                         <div class="quickview-ratting">
@@ -67,7 +67,8 @@
                                 <i class="ti-minus"></i>
                             </button>
                         </div>
-                        <input type="text" name="quant[1]" class="input-number" data-min="1" data-max="1000" value="1">
+                        <input type="text" name="quant[1]" [(ngModel)]="count" #ctrl="ngModel" class="input-number"
+                            data-min="1" data-max="1000" value="1">
                         <div class="button plus">
                             <button type="button" class="btn btn-primary btn-number" data-type="plus"
                                 data-field="quant[1]">

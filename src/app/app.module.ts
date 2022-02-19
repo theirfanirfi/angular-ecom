@@ -12,6 +12,7 @@ import {environment} from '../environments/environment';
 
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { getStorage, provideStorage } from '@angular/fire/storage';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
     AppRoutingModule,
     ReactiveFormsModule,
     CommonModule,
+    FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
