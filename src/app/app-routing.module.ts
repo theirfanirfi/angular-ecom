@@ -19,6 +19,7 @@ import {
   redirectLoggedInTo,
   redirectUnauthorizedTo,
 } from '@angular/fire/auth-guard';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToHome = () => redirectLoggedInTo(['home']);
 const routes: Routes = [
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'checkout', component: CheckoutComponent, ...canActivate(redirectUnauthorizedToLogin), },
   { path: 'payment', component: PaymentComponent, ...canActivate(redirectUnauthorizedToLogin), },
   { path: 'profile', component: ProfileComponent, ...canActivate(redirectUnauthorizedToLogin), },
+  { path: 'resetpassword', component: ResetpasswordComponent, ...canActivate(redirectLoggedInToHome), },
 ];
 
 @NgModule({
@@ -40,4 +42,4 @@ const routes: Routes = [
 export class AppRoutingModule { }
 export const routingComponents = [LoginScreenComponent, SignUpScreenComponent, HomeComponent,
   TopbarComponent, ProductListComponent, FooterComponent, ProductComponent, CartComponent,
-  CheckoutComponent, PaymentComponent, ProfileComponent]
+  CheckoutComponent, PaymentComponent, ProfileComponent, ResetpasswordComponent]
