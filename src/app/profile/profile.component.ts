@@ -11,40 +11,66 @@ import { AuthServiceService } from '../services/auth-service.service'
 })
 export class ProfileComponent implements OnInit {
   user$ = this.auth.getUserInfo();
+  displayName?: string;
+  email?: string;
+  messages: string[][] = [];
 
-  form = new FormGroup({
-    "displayName": new FormControl("", Validators.required),
-    "email": new FormControl("", Validators.required),
-    "password": new FormControl("", Validators.required),
+  Nameform = new FormGroup({
+    "displayName": new FormControl("", Validators.required,),
   });
+
+  Emailform = new FormGroup({
+    "email": new FormControl("", Validators.required),
+  });
+
+  Passwordform = new FormGroup({
+    "password": new FormControl("", [Validators.required, Validators.minLength(6)]),
+  });
+
   constructor(private userservice: UsersService, private auth: AuthServiceService) {
     console.log('user: ', this.user$);
 
   }
-  onSubmit(event: any, user: ProfileUser) {
-    // this.userservice.addUser(this.form.value)
-    // console.log(this.auth.updateProfile(this.form.value));
-    console.log(this.userservice.addUserr(this.form.value, user.uid));
-    // if (this.form.status == "VALID"){
-    //   let {fullname, email, password } = this.form.value;
-    //    const profileData = this.form.value;
-    //    console.log(profileData);
 
-    //    this.userservice.updateUser(profileData)
-    //    .subscribe(
-    //      data => {
-    //      console.log(data);
-    //    }, 
-    //    error => {
-    //      console.log('error: ', error);
-    //    })
-    // }else {
-    //   alert('All fields are required');
-    // }
+  changeName(event: any, user: ProfileUser): void {
+    if (this.Nameform.status == "VALID") {
+      const profileData = this.Nameform.value;
+      this.messages = [];
+      this.userservice.updateUser(profileData, user.uid)
+        .subscribe(
+          data => {
+            console.log(data);
+            // alert('Name updated successfully');
+            this.messages.push(["success", "Full Name updated successfully"]);
+          },
+          error => {
+            console.log('error: ', error);
+            // alert('Error occurred, please try again');
+          })
+    } else {
+      alert('All fields are required');
+    }
+
+    // this.messages.concat(this.auth.updateEmailAndPassword(this.form.value.email, this.form.value.password));
+    // console.log(this.messages);
   }
-  ngOnInit(): void {
-    // this.user$ = await this.auth.getUserInfo();
-    // console.log(this.userservice.getUser(this.user$.uid));
+
+  changeEmail(event: any, user: ProfileUser): void {
+    this.messages = [];
+    this.messages = this.auth.updateEmaill(this.Emailform.value.email);
+  }
+  changePassword(event: any, user: ProfileUser) {
+    this.messages = [];
+    this.messages = this.auth.updatePasswordd(this.Passwordform.value.password);
+  }
+  async ngOnInit(): Promise<void> {
+    this.user$ = await this.auth.getUserInfo();
+    this.userservice.currentUserProfile$.subscribe(data => {
+      if (data != null) {
+        this.displayName = data.displayName;
+        this.email = this.user$.email;
+      }
+    });
     // this.auth.resetPassword();
   }
 
