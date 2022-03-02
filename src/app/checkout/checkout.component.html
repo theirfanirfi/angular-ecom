@@ -32,7 +32,7 @@
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label>Phone Number<span>*</span></label>
-                                    <input type="number" name="number" placeholder="" required="required">
+                                    <input type="text" name="number" placeholder="" required="required">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12">
@@ -333,12 +333,9 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <div class="form-group create-account">
-                                    <input id="cbox" type="checkbox">
-                                    <label>Create an account?</label>
-                                </div>
-                            </div>
+
+
+
                         </div>
                     </form>
                     <!--/ End Form -->
@@ -351,9 +348,9 @@
                         <h2>CART TOTALS</h2>
                         <div class="content">
                             <ul>
-                                <li>Sub Total<span>$330.00</span></li>
-                                <li>(+) Shipping<span>$10.00</span></li>
-                                <li class="last">Total<span>$340.00</span></li>
+                                <!-- <li>Sub Total<span>$330.00</span></li>
+                                <li>(+) Shipping<span>$10.00</span></li> -->
+                                <li class="last">Total<span>${{total_cart_price}}</span></li>
                             </ul>
                         </div>
                     </div>
