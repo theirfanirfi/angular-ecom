@@ -44,8 +44,8 @@ export class UsersService {
   // }
 
   async addUser(user: ProfileUser): Promise<any> {
-    let uid = "dfsd"
-    const ref = doc(this.firestore, 'users', uid);
+
+    const ref = doc(this.firestore, 'users', user.uid);
     return from(setDoc(ref, user));
   }
 

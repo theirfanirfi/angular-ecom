@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../models/Product.model'
 import { CartService } from '../services/cart.service'
 import { ProductService } from '../services/product.service'
+import { WishListService } from '../services/wish-list.service'
 
 @Component({
   selector: 'app-product-list',
@@ -13,9 +14,8 @@ export class ProductListComponent implements OnInit {
   products: Product[] = [];
   count: number = 1;
 
-  constructor(private cart: CartService, productService: ProductService) {
+  constructor(private cart: CartService, productService: ProductService, private wishlist: WishListService) {
     this.products = productService.productsDatabase();
-    console.log(this.products);
   }
 
   ngOnInit(): void {
@@ -24,7 +24,12 @@ export class ProductListComponent implements OnInit {
 
   addToCart(product: Product): void {
     this.cart.addToCart(product, Number(this.count));
-    alert('Product added to cart successfully');
+    alert('Product added to cart');
+  }
+
+  addToWishList(product: Product): void {
+    this.wishlist.addToWishList(Number(product.id));
+    // alert('Product added to wishtlist.');
   }
 
 }

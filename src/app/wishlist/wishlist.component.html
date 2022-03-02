@@ -1,3 +1,4 @@
+<app-topbar></app-topbar>
 <!-- Product Style -->
 <section class="product-area shop-sidebar shop section">
     <div class="container">
@@ -18,8 +19,8 @@
                                     <div class="product-action">
                                         <!-- <a data-toggle="modal" data-target="#exampleModal" title="Quick View"
                                             href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a> -->
-                                        <a (click)="addToWishList(product)" title="Wishlist"><i
-                                                class=" ti-heart "></i><span>Add to
+                                        <a (click)="removeFromWishList(product)" title="Wishlist"><i
+                                                class=" ti-trash "></i><span>Remove
                                                 Wishlist</span></a>
                                         <!-- <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to
                                                 Compare</span></a> -->
@@ -163,3 +164,5 @@
     </div>
 </div>
 <!-- Modal end -->
+
+<app-footer></app-footer>

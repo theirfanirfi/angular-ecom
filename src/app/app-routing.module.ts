@@ -12,6 +12,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { CartComponent } from './cart/cart.component';
 import { PaymentComponent } from './payment/payment.component';
 import { ProfileComponent } from './profile/profile.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
 
 
 import {
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'payment', component: PaymentComponent, ...canActivate(redirectUnauthorizedToLogin), },
   { path: 'profile', component: ProfileComponent, ...canActivate(redirectUnauthorizedToLogin), },
   { path: 'resetpassword', component: ResetpasswordComponent, ...canActivate(redirectLoggedInToHome), },
+  { path: 'wishlist', component: WishlistComponent, ...canActivate(redirectUnauthorizedToLogin), },
 ];
 
 @NgModule({
@@ -42,4 +44,4 @@ const routes: Routes = [
 export class AppRoutingModule { }
 export const routingComponents = [LoginScreenComponent, SignUpScreenComponent, HomeComponent,
   TopbarComponent, ProductListComponent, FooterComponent, ProductComponent, CartComponent,
-  CheckoutComponent, PaymentComponent, ProfileComponent, ResetpasswordComponent]
+  CheckoutComponent, PaymentComponent, ProfileComponent, ResetpasswordComponent, WishlistComponent]

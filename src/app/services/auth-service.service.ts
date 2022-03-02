@@ -43,7 +43,6 @@ export class AuthServiceService {
   }
 
   getUserInfo(): any {
-    var user = this.auth.currentUser;
     // console.log(user);
     // updateCurrentUser(this.auth, {email: "some email"})
     // console.log(getAuth().currentUser);

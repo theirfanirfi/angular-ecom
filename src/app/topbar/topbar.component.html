@@ -19,44 +19,15 @@
                     <div class="right-content">
                         <ul class="list-main">
                             <!-- <li><i class="ti-location-pin"></i> Store location</li> -->
-                            <li><i class="ti-home"></i> <a routerLink="/home">Products</a></li>
-                            <li><i class="ti-user"></i> <a routerLink="/profile">My Profile</a></li>
-                            <li>
-                                <i class="ti-heart" style="color:black;"><a routerLink="/profile"> Wishlist </a></i>
+                            <li><i style="color:black;" class="ti-home"></i> <a routerLink="/home">Products</a></li>
+                            <li><i style="color:black;" class="ti-user"></i> <a routerLink="/profile">My Profile</a>
                             </li>
-
                             <li>
-                                <div class="sinlge-bar shopping">
-                                    <a href="#" class="single-icon"><i class="ti-bag"></i> <span
-                                            class="total-count">{{cart.length}}</span></a>
-                                    <!-- Shopping Item -->
-                                    <div class="shopping-item">
-                                        <div class="dropdown-cart-header">
-                                            <span>{{cart.length}} Items</span>
-                                            <a href="#">View Cart</a>
-                                        </div>
-                                        <ul class="shopping-list">
-
-                                            <li *ngFor="let c of cart">
-                                                <button (click)="removeFromCart(c)" class="remove"
-                                                    title="Remove this item"><i class="fa fa-remove"></i></button>
-                                                <a class="cart-img" href="#"><img
-                                                        src="https://via.placeholder.com/70x70" alt="#"></a>
-                                                <h4><a href="#">{{c.product.title}}</a></h4>
-                                                <p class="quantity">{{c.number_of_products}}x - <span
-                                                        class="amount">${{c.product.price}}</span></p>
-                                            </li>
-                                        </ul>
-                                        <div class="bottom">
-                                            <!-- <div class="total">
-                                                                                                                                        <span>Total</span>
-                                                                                                                                        <span class="total-amount">$134.00</span>
-                                                                                                                                    </div> -->
-                                            <a routerLink="/checkout" class="btn animate">Checkout</a>
-                                        </div>
-                                    </div>
-                                    <!--/ End Shopping Item -->
-                                </div>
+                                <i class="ti-heart" style="color:black;"><a routerLink="/wishlist"> Wishlist </a></i>
+                            </li>
+                            <li>
+                                <i class="ti-bag" style="color:black;"><a routerLink="/cart"> Cart ({{cart.length}})
+                                    </a></i>
                             </li>
 
                             <li><button class="btn-sm btn-primary" (click)="logout()">Logout <i class="ti-power-off"
