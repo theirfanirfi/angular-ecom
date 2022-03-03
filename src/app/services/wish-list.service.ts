@@ -20,6 +20,7 @@ import { AuthServiceService } from './auth-service.service';
 export class WishListService {
   private wishlist: AngularFirestoreCollection<WishList>;
   wishes: Observable<WishList[]>;
+  user: any = []
 
 
   constructor(
@@ -28,28 +29,28 @@ export class WishListService {
     private authService: AuthServiceService) {
     this.wishlist = this.angualrFire.collection<WishList>('wishlist');
     this.wishes = this.wishlist.valueChanges();
+    this.user = this.authService.getUserInfo();
   }
 
   async addToWishList(product_id: number) {
     console.log(product_id)
-    let user = this.authService.getUserInfo();
-    this.wishlist.add({ product_id: product_id, user_id: user.uid })
+    this.wishlist.add({ product_id: product_id, user_id: this.user.uid })
   }
 
   getProductFromWishtList(id: number): Observable<any> {
 
-    return this.angualrFire.collection<WishList>('wishlist', ref => ref.where('product_id', '==', id)).valueChanges() as Observable<any>
+    return this.angualrFire.collection<WishList>('wishlist', ref => ref.where('product_id', '==', id).where('user_id', '==', this.user.uid)).valueChanges() as Observable<any>
 
   }
 
   async removeFromWishList(id: number) {
-    // let d = doc(this.firestore, 'wishes/fdsfds')
-    // let d = this.angualrFire.collection<WishList>('wishlist', ref => ref.where('product_id', '==', id)
-    // this.wishlist.
-    // await deleteDoc(doc(this.firestore, "wishlist", ["product_id", id]));
-    // deleteDoc(d)
-    // this.wishlist.
-    // this.angualrFire.collection('wishtlist').doc("ss").delete
+    var wi = this.angualrFire.collection<WishList>('wishlist', ref => ref.where('product_id', '==', id)).get();
+    wi.forEach((w) => {
+      w.forEach(i => {
+        let docRef = doc(this.firestore, `wishlist/${i.id}`);
+        deleteDoc(docRef);
+      })
+    })
   }
 
   getWishes() {

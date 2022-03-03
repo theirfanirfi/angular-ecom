@@ -20,9 +20,13 @@ export class WishlistComponent implements OnInit {
 
   ngOnInit(): void {
     this.wishes.forEach((wish) => {
+      this.products = []
+      console.log(wish)
       wish.forEach(w => {
-        console.log(w);
-        this.products.push(this.productService.getProduct(w.product_id))
+        console.log(w.id);
+        console.log(w.uid);
+        let product = this.productService.getProduct(w.product_id);
+        product == null ? "" : this.products.push(product)
       })
     })
   }
