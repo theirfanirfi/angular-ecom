@@ -12,7 +12,7 @@ export class TotalpriceService {
   }
 
   decreaseTotalPrice(price: number) {
-    this.TOTAL_PRICE = this.TOTAL_PRICE + Number(price)
+    this.TOTAL_PRICE = this.TOTAL_PRICE - Number(price)
   }
 
   getTotalPrice(): number {

@@ -79,11 +79,7 @@ Side note: I know that this style of nesting in SASS doesn't result in the most 
     }
 
     /* Body/Header stuff */
-    body {
-        padding: 0px 30px 30px 20px;
-        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-weight: 100;
-    }
+
 
     h1 {
         font-weight: 100;
@@ -319,10 +315,11 @@ Side note: I know that this style of nesting in SASS doesn't result in the most 
                         </div>
                         <div class="product-price">{{c.product.price}}</div>
                         <div class="product-quantity">
-                            <input type="number" value="{{c.number_of_products}}">
+                            <input type="number" value="{{c.number_of_products}}" min="1" max="1000"
+                                (change)="onProductQuanityChange(c, $event)">
                         </div>
                         <div class="product-removal">
-                            <button class="remove-product">
+                            <button (click)="removeFromCart(c)" class="remove-product">
                                 Remove
                             </button>
                         </div>

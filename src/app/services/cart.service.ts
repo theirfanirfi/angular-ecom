@@ -60,9 +60,24 @@ export class CartService {
     }
   }
 
+  increaseNumberOfProductsInCart(cart: Cart, number_of_products: number): boolean {
+
+    let index = this.returnProductIfExists(cart.product);
+    console.log(index)
+    if (index >= 0) {
+      this.cart[index].number_of_products = number_of_products;
+      this.totalpriceService.increaseTotalPrice(cart.product.price * Number(number_of_products));
+      return true;
+    }
+    return false;
+  }
+
+
+
   removeFromCart(cart: Cart) {
     let index = this.returnProductIfExists(cart.product);
     this.cart.splice(index, 1);
+    this.totalpriceService.decreaseTotalPrice(cart.product.price * Number(cart.number_of_products));
   }
 
 

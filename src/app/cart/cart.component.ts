@@ -13,7 +13,7 @@ export class CartComponent implements OnInit {
   number_of_products_in_cart: number = 0;
   cart: Cart[] = [];
   total_cart_price: number = 0;
-
+  count: number = 1;
   constructor(private auth: AuthServiceService, private router: Router, private cartservice: CartService, private totalprice: TotalpriceService) {
 
   }
@@ -26,6 +26,14 @@ export class CartComponent implements OnInit {
 
   removeFromCart(cart: Cart) {
     this.cartservice.removeFromCart(cart);
+    this.ngOnInit();
+  }
+
+  onProductQuanityChange(cart: Cart, event: any) {
+    let numberOfProducts = event.target.value;
+    this.cartservice.increaseNumberOfProductsInCart(cart, numberOfProducts);
+    this.total_cart_price = this.totalprice.getTotalPrice();
+    // this.ngOnInit();
   }
 
 }
