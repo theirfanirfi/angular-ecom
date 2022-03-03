@@ -33,8 +33,19 @@ export class WishListService {
   }
 
   async addToWishList(product_id: number) {
-    console.log(product_id)
+    var wi = this.angualrFire.collection<WishList>('wishlist', ref => ref.where('product_id', '==', product_id)).get();
+    await wi.forEach(async (w) => {
+      w.forEach(i => {
+        let docRef = doc(this.firestore, `wishlist/${i.id}`);
+        deleteDoc(docRef);
+      })
+
+    })
+
+
     this.wishlist.add({ product_id: product_id, user_id: this.user.uid })
+
+
   }
 
   getProductFromWishtList(id: number): Observable<any> {
