@@ -4,6 +4,7 @@ import { Product } from '../models/Product.model'
 import { switchMap } from 'rxjs/operators';
 import { ProductService } from '../services/product.service'
 import { CartService } from '../services/cart.service'
+import { WishListService } from '../services/wish-list.service'
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -17,7 +18,8 @@ export class ProductComponent implements OnInit {
   constructor(private router: Router,
     private route: ActivatedRoute,
     private productService: ProductService,
-    private cartService: CartService) {
+    private cartService: CartService,
+    private wishlist: WishListService) {
 
   }
 
@@ -28,5 +30,20 @@ export class ProductComponent implements OnInit {
 
   addToCart() {
     this.cartService.addToCart(this.product, Number(this.count));
+    alert('Product added to cart');
+  }
+
+  addToWishList(product: Product): void {
+    this.wishlist.addToWishList(Number(product.id));
+    alert('Product added to wishtlist.');
+  }
+  incrementNumber() {
+    this.count++;
+  }
+  decrementNumber() {
+    if (this.count > 1) {
+      this.count--;
+
+    }
   }
 }

@@ -29,7 +29,7 @@ export class ProductListComponent implements OnInit {
 
   addToWishList(product: Product): void {
     this.wishlist.addToWishList(Number(product.id));
-    // alert('Product added to wishtlist.');
+    alert('Product added to wishtlist.');
   }
 
 }

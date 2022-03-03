@@ -62,16 +62,16 @@
                     <!-- Input Order -->
                     <div class="input-group">
                         <div class="button minus">
-                            <button type="button" class="btn btn-primary btn-number" disabled="disabled"
-                                data-type="minus" data-field="quant[1]">
+                            <button type="button" class="btn btn-primary btn-number" data-type="minus"
+                                data-field="quant[1]" (click)="decrementNumber()">
                                 <i class="ti-minus"></i>
                             </button>
                         </div>
                         <input type="text" name="quant[1]" [(ngModel)]="count" #ctrl="ngModel" class="input-number"
                             data-min="1" data-max="1000" value="1">
                         <div class="button plus">
-                            <button type="button" class="btn btn-primary btn-number" data-type="plus"
-                                data-field="quant[1]">
+                            <button (click)="incrementNumber()" type="button" class="btn btn-primary btn-number"
+                                data-type="plus" data-field="quant[1]">
                                 <i class="ti-plus"></i>
                             </button>
                         </div>
@@ -80,8 +80,8 @@
                 </div>
                 <div class="add-to-cart">
                     <button class="btn" (click)="addToCart()">Add to Cart</button>
-                    <a href="#" class="btn min"><i class="ti-heart"></i></a>
-                    <a href="#" class="btn min"><i class="fa fa-compress"></i></a>
+                    <a (click)="addToWishList(product)" class="btn min"><i class="ti-heart"></i></a>
+                    <!-- <a href="#" class="btn min"><i class="fa fa-compress"></i></a> -->
                 </div>
                 <div class="default-social">
                     <h4 class="share-now">Share:</h4>
