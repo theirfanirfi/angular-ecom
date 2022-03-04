@@ -88,4 +88,8 @@ export class CartService {
   getCart(): Cart[] {
     return this.cart;
   }
+
+  resetCart(): void {
+    this.cart = [];
+  }
 }
