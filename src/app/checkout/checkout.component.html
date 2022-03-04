@@ -3,42 +3,47 @@
 <!-- Start Checkout -->
 <section class="shop checkout section">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-12">
-                <div class="checkout-form">
-                    <h2>Make Your Checkout Here</h2>
-                    <p>Please register in order to checkout more quickly</p>
-                    <!-- Form -->
-                    <form class="form" method="post" action="#">
+        <form [formGroup]="form" class="form" method="post" action="#" (ngSubmit)="submit()">
+
+            <div class="row">
+                <div class="col-lg-8 col-12">
+                    <div class="checkout-form">
+                        <h2>Make Your Checkout Here</h2>
+                        <p>Please register in order to checkout more quickly</p>
+                        <!-- Form -->
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label>First Name<span>*</span></label>
-                                    <input type="text" name="name" placeholder="" required="required">
+                                    <input type="text" name="name" placeholder="" formControlName="firstname"
+                                        required="required">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label>Last Name<span>*</span></label>
-                                    <input type="text" name="name" placeholder="" required="required">
+                                    <input type="text" name="name" placeholder="" formControlName="lastname"
+                                        required="required">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label>Email Address<span>*</span></label>
-                                    <input type="email" name="email" placeholder="" required="required">
+                                    <input type="email" name="email" placeholder="" formControlName="email"
+                                        required="required">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label>Phone Number<span>*</span></label>
-                                    <input type="text" name="number" placeholder="" required="required">
+                                    <input type="text" name="number" placeholder="" formControlName="phonenumber"
+                                        required="required">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label>Country<span>*</span></label>
-                                    <select name="country_name" id="country">
+                                    <select name="country_name" id="country" formControlName="country_name">
                                         <option value="AF">Afghanistan</option>
                                         <option value="AX">Åland Islands</option>
                                         <option value="AL">Albania</option>
@@ -290,7 +295,7 @@
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label>State / Divition<span>*</span></label>
-                                    <select name="state-province" id="state-province">
+                                    <select name="state-province" id="state-province" formControlName="state_province">
                                         <option value="divition" selected="selected">New Yourk</option>
                                         <option>Los Angeles</option>
                                         <option>Chicago</option>
@@ -304,7 +309,8 @@
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label>Address Line 1<span>*</span></label>
-                                    <input type="text" name="address" placeholder="" required="required">
+                                    <input type="text" name="address" formControlName="address" placeholder=""
+                                        required="required">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12">
@@ -316,13 +322,14 @@
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label>Postal Code<span>*</span></label>
-                                    <input type="text" name="post" placeholder="" required="required">
+                                    <input type="text" name="post" placeholder="" formControlName="postal_code"
+                                        required="required">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label>Company<span>*</span></label>
-                                    <select name="company_name" id="company">
+                                    <select name="company_name" id="company" formControlName="company_name">
                                         <option value="company" selected="selected">Microsoft</option>
                                         <option>Apple</option>
                                         <option>Xaiomi</option>
@@ -337,26 +344,25 @@
 
 
                         </div>
-                    </form>
-                    <!--/ End Form -->
-                </div>
-            </div>
-            <div class="col-lg-4 col-12">
-                <div class="order-details">
-                    <!-- Order Widget -->
-                    <div class="single-widget">
-                        <h2>CART TOTALS</h2>
-                        <div class="content">
-                            <ul>
-                                <!-- <li>Sub Total<span>$330.00</span></li>
-                                <li>(+) Shipping<span>$10.00</span></li> -->
-                                <li class="last">Total<span>${{total_cart_price}}</span></li>
-                            </ul>
-                        </div>
+                        <!--/ End Form -->
                     </div>
-                    <!--/ End Order Widget -->
-                    <!-- Order Widget -->
-                    <!-- <div class="single-widget">
+                </div>
+                <div class="col-lg-4 col-12">
+                    <div class="order-details">
+                        <!-- Order Widget -->
+                        <div class="single-widget">
+                            <h2>CART TOTALS</h2>
+                            <div class="content">
+                                <ul>
+                                    <!-- <li>Sub Total<span>$330.00</span></li>
+                                <li>(+) Shipping<span>$10.00</span></li> -->
+                                    <li class="last">Total<span>${{total_cart_price}}</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--/ End Order Widget -->
+                        <!-- Order Widget -->
+                        <!-- <div class="single-widget">
                         <h2>Payments</h2>
                         <div class="content">
                             <div class="checkbox">
@@ -369,26 +375,30 @@
                             </div>
                         </div>
                     </div> -->
-                    <!--/ End Order Widget -->
-                    <!-- Payment Method Widget -->
-                    <!-- <div class="single-widget payement">
+                        <!--/ End Order Widget -->
+                        <!-- Payment Method Widget -->
+                        <!-- <div class="single-widget payement">
                         <div class="content">
                             <img src="images/payment-method.png" alt="#">
                         </div>
                     </div> -->
-                    <!--/ End Payment Method Widget -->
-                    <!-- Button Widget -->
-                    <div class="single-widget get-button">
-                        <div class="content">
-                            <div class="button">
-                                <a routerLink="/payment" class="btn">Proceed to Payment</a>
+                        <!--/ End Payment Method Widget -->
+                        <!-- Button Widget -->
+                        <div class="single-widget get-button">
+                            <div class="content">
+                                <div class="button">
+                                    <button type="submit" class="btn">Proceed to Payment</button>
+                                </div>
                             </div>
                         </div>
+
+                        <!--/ End Button Widget -->
                     </div>
-                    <!--/ End Button Widget -->
                 </div>
             </div>
-        </div>
+
+        </form>
+
     </div>
 </section>
 <!--/ End Checkout -->

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Cart } from '../models/cart.model'
+import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { CartService } from '../services/cart.service'
 import { TotalpriceService } from '../services/totalprice.service'
@@ -10,14 +11,32 @@ import { TotalpriceService } from '../services/totalprice.service'
 })
 export class CheckoutComponent implements OnInit {
   total_cart_price: number = 0;
-  constructor(private cartservice: CartService, private totalprice: TotalpriceService) { }
+  constructor(private cartservice: CartService,
+    private totalprice: TotalpriceService,
+    private router: Router) { }
+
   form = new FormGroup({
+    "firstname": new FormControl("", Validators.required),
+    "lastname": new FormControl("", Validators.required),
     "email": new FormControl("", Validators.required),
-    "password": new FormControl("", Validators.required),
+    "phonenumber": new FormControl("", Validators.required),
+    "country_name": new FormControl("", Validators.required),
+    "state_province": new FormControl("", Validators.required),
+    "address": new FormControl("", Validators.required),
+    "postal_code": new FormControl("", Validators.required),
+    "company_name": new FormControl("", Validators.required),
   });
 
   ngOnInit(): void {
     this.total_cart_price = this.totalprice.getTotalPrice();
+  }
+
+  submit() {
+    if (this.form.valid) {
+      this.router.navigate(['payment']);
+    } else {
+      alert("all fields are required");
+    }
   }
 
 }
