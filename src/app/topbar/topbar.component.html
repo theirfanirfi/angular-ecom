@@ -30,8 +30,11 @@
                                     </a></i>
                             </li>
 
-                            <li><button class="btn-sm btn-primary" (click)="logout()">Logout <i class="ti-power-off"
-                                        style="color:white;"></i></button></li>
+                            <li *ngIf="isLoggedIn"><button class="btn-sm btn-primary" (click)="logout()">Logout <i
+                                        class="ti-power-off" style="color:white;"></i></button></li>
+                            <li *ngIf="!isLoggedIn"><a style="color:white;" routerLink="/login"
+                                    class="btn-sm btn-primary" (click)="logout()">Login <i class="ti-lock"
+                                        style="color:white;"></i></a></li>
                         </ul>
                     </div>
 
