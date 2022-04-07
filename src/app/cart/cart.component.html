@@ -304,7 +304,7 @@ Side note: I know that this style of nesting in SASS doesn't result in the most 
 
                     <div class="product" *ngFor="let c of cart">
                         <div class="product-image">
-                            <img src="https://s.cdpn.io/3/large-NutroNaturalChoiceAdultLambMealandRiceDryDogFood.png">
+                            <img [src]=[c.product.image]>
                         </div>
                         <div class="product-details">
                             <div class="product-title">{{c.product.title}}</div>

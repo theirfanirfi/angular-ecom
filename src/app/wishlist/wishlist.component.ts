@@ -53,6 +53,7 @@ export class WishlistComponent implements OnInit {
   }
 
   addToCart(product: Product): void {
+    console.log(this.user);
     try {
       if (this.user) {
         this.cart.addToCart(product, Number(this.count));
