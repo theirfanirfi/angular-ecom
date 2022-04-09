@@ -43,7 +43,8 @@
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label>Country<span>*</span></label>
-                                    <select name="country_name" id="country" formControlName="country_name">
+                                    <select class="form-control" style="background:#F6F7FB;" id="country"
+                                        (change)="onChangeCountry($event)" formControlName="country_name">
                                         <option value="AF">Afghanistan</option>
                                         <option value="AX">Åland Islands</option>
                                         <option value="AL">Albania</option>
@@ -275,7 +276,8 @@
                                         <option value="UG">Uganda</option>
                                         <option value="UA">Ukraine</option>
                                         <option value="AE">United Arab Emirates</option>
-                                        <option value="US" selected="selected">United Kingdom</option>
+                                        <option value="UK" selected="selected">United Kingdom</option>
+                                        <option value="USA">United States of America</option>
                                         <option value="UY">Uruguay</option>
                                         <option value="UM">U.S. Minor Outlying Islands</option>
                                         <option value="VI">U.S. Virgin Islands</option>
@@ -292,10 +294,11 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-12">
+                            <div *ngIf="this.states_visibility" class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label>State / Divition<span>*</span></label>
-                                    <select name="state-province" id="state-province" formControlName="state_province">
+                                    <select class="form-control" style="background:#F6F7FB;" name="state-province"
+                                        id="state-province" formControlName="state_province">
                                         <option value="divition" selected="selected">New Yourk</option>
                                         <option>Los Angeles</option>
                                         <option>Chicago</option>
@@ -326,23 +329,6 @@
                                         required="required">
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-12">
-                                <div class="form-group">
-                                    <label>Company<span>*</span></label>
-                                    <select name="company_name" id="company" formControlName="company_name">
-                                        <option value="company" selected="selected">Microsoft</option>
-                                        <option>Apple</option>
-                                        <option>Xaiomi</option>
-                                        <option>Huawer</option>
-                                        <option>Wpthemesgrid</option>
-                                        <option>Samsung</option>
-                                        <option>Motorola</option>
-                                    </select>
-                                </div>
-                            </div>
-
-
-
                         </div>
                         <!--/ End Form -->
                     </div>

@@ -11,6 +11,7 @@ import { TotalpriceService } from '../services/totalprice.service'
 })
 export class CheckoutComponent implements OnInit {
   total_cart_price: number = 0;
+  states_visibility = false;
   constructor(private cartservice: CartService,
     private totalprice: TotalpriceService,
     private router: Router) { }
@@ -21,14 +22,23 @@ export class CheckoutComponent implements OnInit {
     "email": new FormControl("", Validators.required),
     "phonenumber": new FormControl("", Validators.required),
     "country_name": new FormControl("", Validators.required),
-    "state_province": new FormControl("", Validators.required),
+    "state_province": new FormControl(""),
     "address": new FormControl("", Validators.required),
     "postal_code": new FormControl("", Validators.required),
-    "company_name": new FormControl("", Validators.required),
   });
 
   ngOnInit(): void {
     this.total_cart_price = this.totalprice.getTotalPrice();
+  }
+
+  onChangeCountry(e: any): void {
+    if (e.target.value == "USA") {
+      this.states_visibility = true;
+    } else {
+      if (this.states_visibility) {
+        this.states_visibility = false;
+      }
+    }
   }
 
   submit() {
