@@ -18,4 +18,8 @@ export class TotalpriceService {
   getTotalPrice(): number {
     return this.TOTAL_PRICE;
   }
+
+  resetTotalPrice(): number {
+    return this.TOTAL_PRICE = 0;
+  }
 }

@@ -90,6 +90,8 @@ export class CartService {
   }
 
   resetCart(): void {
+    this.total_price = 0;
     this.cart = [];
+    this.totalpriceService.resetTotalPrice();
   }
 }
