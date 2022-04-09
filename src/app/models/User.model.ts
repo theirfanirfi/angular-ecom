@@ -7,4 +7,7 @@ export interface ProfileUser {
   phone?: string;
   address?: string;
   photoURL?: string;
+  country?: string;
+  state?: string;
+  postal_code?: string;
 }
