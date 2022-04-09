@@ -36,4 +36,11 @@ export class PaymentService {
     this.paymentCollection.add(payment);
 
   }
+
+  getPurchases(): Observable<any> {
+
+    // return this.angualrFire.collection<Payment>('payments').valueChanges() as Observable<any>;
+    return this.payments;
+
+  }
 }
