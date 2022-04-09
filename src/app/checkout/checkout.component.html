@@ -31,6 +31,14 @@
                                     <label>Email Address<span>*</span></label>
                                     <input type="email" name="email" placeholder="" formControlName="email"
                                         required="required">
+
+                                    <div *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+                                        class="alert alert-danger">
+
+                                        <div>
+                                            Invalid Email Address.
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12">

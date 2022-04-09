@@ -19,7 +19,7 @@ export class CheckoutComponent implements OnInit {
   form = new FormGroup({
     "firstname": new FormControl("", Validators.required),
     "lastname": new FormControl("", Validators.required),
-    "email": new FormControl("", Validators.required),
+    "email": new FormControl("", [Validators.required, Validators.email]),
     "phonenumber": new FormControl("", Validators.required),
     "country_name": new FormControl("", Validators.required),
     "state_province": new FormControl(""),
@@ -47,6 +47,10 @@ export class CheckoutComponent implements OnInit {
     } else {
       alert("all fields are required");
     }
+  }
+
+  get email() {
+    return this.form.get('email');
   }
 
 }
