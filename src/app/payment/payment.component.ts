@@ -32,12 +32,23 @@ export class PaymentComponent implements OnInit {
 
   }
 
+  getTodayDate(): string {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    return mm + '/' + dd + '/' + yyyy;
+  }
+
   confirmPayment() {
-    console.log(this.form.value)
+
+
     if (this.form.status == "VALID") {
       let pay: Payment = this.form.value;
       pay.price = this.total_price
-      pay.payment_date = new Date();
+      pay.payment_date = this.getTodayDate()
+      pay.total_items = this.cart.getTotalProductsInCart();
       this.paymentService.addPayment(pay);
       alert('Payment confirmed. Thank you for shopping.');
       this.cart.resetCart();

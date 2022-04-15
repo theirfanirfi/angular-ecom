@@ -42,12 +42,14 @@
         <tr>
             <th>Full Name</th>
             <th>Total purchase amount</th>
+            <th>Items purchased</th>
             <th>Purchase date</th>
         </tr>
         <tr *ngFor="let p of new_payments[0]">
             <td>{{p.fullname}}</td>
             <td>{{p.price}}$</td>
-            <td>{{ format_date(p.payment_date)}}</td>
+            <td>{{p.total_items}}</td>
+            <td>{{p.payment_date}}</td>
         </tr>
 
     </table>

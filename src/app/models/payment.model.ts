@@ -4,6 +4,7 @@ export interface Payment {
     fullname: string,
     expiry_month: number,
     expiry_year: number,
-    payment_date: Date,
+    payment_date: string,
     price: number,
+    total_items: number,
 }

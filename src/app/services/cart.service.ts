@@ -94,4 +94,13 @@ export class CartService {
     this.cart = [];
     this.totalpriceService.resetTotalPrice();
   }
+
+  getTotalProductsInCart(): number {
+    let products_count: number = 0;
+    for (let c of this.cart) {
+      products_count += Number(c.number_of_products)
+    }
+
+    return products_count;
+  }
 }

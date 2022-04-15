@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { CartService } from '../services/cart.service'
 import { TotalpriceService } from '../services/totalprice.service'
+import { UsersService } from '../services/user.service'
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -14,7 +15,7 @@ export class CheckoutComponent implements OnInit {
   states_visibility = false;
   constructor(private cartservice: CartService,
     private totalprice: TotalpriceService,
-    private router: Router) { }
+    private router: Router, private userService: UsersService) { }
 
   form = new FormGroup({
     "firstname": new FormControl("", Validators.required),
@@ -29,6 +30,7 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.total_cart_price = this.totalprice.getTotalPrice();
+    // console.log(this.userService.getUser(this.userService.currentUserProfile$))
   }
 
   onChangeCountry(e: any): void {
