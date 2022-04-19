@@ -24,6 +24,7 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     // console.log(this.products[this.products.length - 1]);
+    // this.check_if_it_is_in_wishlist(3);
   }
 
   addToCart(product: Product): void {
@@ -48,5 +49,14 @@ export class ProductListComponent implements OnInit {
 
 
   }
+
+  // async check_if_it_is_in_wishlist(product_id: number): boolean {
+
+  //   let heart = await this.wishlist.getProductFromWishtListForHeart(product_id);
+  //   if (heart) {
+  //     return true;
+  //   }
+  //   return false;
+  // }
 
 }

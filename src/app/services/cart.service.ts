@@ -65,7 +65,13 @@ export class CartService {
     let index = this.returnProductIfExists(cart.product);
     console.log(index)
     if (index >= 0) {
+      let prevNumber_toBeSubtractedFromCart = this.cart[index].number_of_products;
       this.cart[index].number_of_products = number_of_products;
+
+      if (prevNumber_toBeSubtractedFromCart > 0) {
+        this.totalpriceService.decreaseTotalPrice(cart.product.price * Number(prevNumber_toBeSubtractedFromCart));
+      }
+
       this.totalpriceService.increaseTotalPrice(cart.product.price * Number(number_of_products));
       return true;
     }

@@ -20,9 +20,9 @@ import { AuthServiceService } from './auth-service.service';
 export class WishListService {
   private wishlist: AngularFirestoreCollection<WishList>;
   wishes: Observable<WishList[]>;
-  user: any = []
-
-
+  user: any = [];
+  wishlist_products: any = [];
+  isProduct: any = [];
   constructor(
     private angualrFire: AngularFirestore,
     private firestore: Firestore,
@@ -42,7 +42,7 @@ export class WishListService {
 
     })
 
-
+    // this.wishlist_products.push(product_id);
     this.wishlist.add({ product_id: product_id, user_id: this.user.uid })
 
 
@@ -52,6 +52,23 @@ export class WishListService {
 
     return this.angualrFire.collection<WishList>('wishlist', ref => ref.where('product_id', '==', id).where('user_id', '==', this.user.uid)).valueChanges() as Observable<any>
 
+  }
+
+  getProductFromWishtListForHeart(id: any): number {
+    let b = false;
+    let size = 0;
+    // var wi = this.angualrFire.collection<WishList>('wishlist', ref => ref.where('product_id', '==', id));
+    var wi = this.angualrFire.collection<WishList>('wishlist', ref => ref.where('product_id', '==', id));
+
+    wi.get().forEach((w) => {
+
+      if (w.size > 0) {
+        size = w.size;
+        b = true;
+      }
+    });
+
+    return size;
   }
 
   async removeFromWishList(id: number) {
@@ -67,4 +84,6 @@ export class WishListService {
   getWishes() {
     return this.wishes;
   }
+
+
 }

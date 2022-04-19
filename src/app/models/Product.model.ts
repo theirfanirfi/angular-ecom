@@ -4,4 +4,5 @@ export interface Product {
     image: string,
     product_description: string,
     price: number,
+    is_favorite: boolean,
 }

@@ -11,7 +11,7 @@ import { WishListService } from '../services/wish-list.service'
 })
 export class ProductComponent implements OnInit {
 
-  product: Product = { id: 0, title: '', image: '', price: 0, product_description: '' };
+  product: Product = { id: 0, title: '', image: '', price: 0, product_description: '', is_favorite: false };
   count: number = 1;
 
   constructor(

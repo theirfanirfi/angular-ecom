@@ -18,8 +18,12 @@
                                     <div class="product-action">
                                         <!-- <a data-toggle="modal" data-target="#exampleModal" title="Quick View"
                                             href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a> -->
-                                        <a (click)="addToWishList(product)" title="Wishlist"><i
-                                                class=" ti-heart "></i><span>Add to
+
+                                        <a (click)="addToWishList(product)" title="Wishlist">
+                                            <i *ngIf="product.is_favorite" class="fa fa-heart" style="color:red;"></i>
+                                            <i class="fa fa-heart" style="color:red;"></i>
+
+                                            <span>Add to
                                                 Wishlist</span></a>
                                         <!-- <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to
                                                 Compare</span></a> -->
