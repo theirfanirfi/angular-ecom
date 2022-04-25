@@ -5,6 +5,9 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { CartService } from '../services/cart.service'
 import { TotalpriceService } from '../services/totalprice.service'
 import { UsersService } from '../services/user.service'
+import { ProfileUser } from '../models/User.model'
+import { AuthServiceService } from '../services/auth-service.service'
+
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -30,7 +33,22 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.total_cart_price = this.totalprice.getTotalPrice();
-    // console.log(this.userService.getUser(this.userService.currentUserProfile$))
+    this.userService.currentUserProfile$.subscribe(data => {
+      if (data != null) {
+        this.form.setValue({
+          firstname: data.firstName,
+          lastname: data.lastName,
+          email: data.email,
+          phonenumber: data.phone,
+          country_name: data.country,
+          state_province: data.state,
+          address: data.address,
+          postal_code: data.postal_code
+        });
+      }
+    });
+
+
   }
 
   onChangeCountry(e: any): void {
