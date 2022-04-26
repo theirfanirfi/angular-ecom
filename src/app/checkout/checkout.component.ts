@@ -5,8 +5,6 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { CartService } from '../services/cart.service'
 import { TotalpriceService } from '../services/totalprice.service'
 import { UsersService } from '../services/user.service'
-import { ProfileUser } from '../models/User.model'
-import { AuthServiceService } from '../services/auth-service.service'
 
 @Component({
   selector: 'app-checkout',

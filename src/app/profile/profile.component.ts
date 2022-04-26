@@ -13,11 +13,42 @@ export class ProfileComponent implements OnInit {
   user$ = this.auth.getUserInfo();
   displayName?: string;
   email?: string;
+  firstName?: string;
+  lastName?: string;
+  phone?: string;
+  address?: string;
+  photoURL?: string;
+  country?: string;
+  state?: string;
+  postal_code?: string;
+
   messages: string[][] = [];
+  states_visibility = false;
+
+  onChangeCountry(e: any): void {
+    if (e.target.value == "USA") {
+      this.states_visibility = true;
+    } else {
+      if (this.states_visibility) {
+        this.states_visibility = false;
+      }
+    }
+  }
 
   Nameform = new FormGroup({
-    "displayName": new FormControl("", Validators.required,),
+    // "displayName": new FormControl("", Validators.required,),
+    "uid": new FormControl(""),
+    "displayName": new FormControl(""),
+    "email": new FormControl(""),
+    "firstName": new FormControl("", Validators.required,),
+    "lastName": new FormControl("", Validators.required,),
+    "phone": new FormControl("", Validators.required,),
+    "address": new FormControl("", Validators.required,),
+    "country": new FormControl("", Validators.required,),
+    "state": new FormControl(""),
+    "postal_code": new FormControl("", Validators.required,),
   });
+
 
   Emailform = new FormGroup({
     "email": new FormControl("", Validators.required),
@@ -34,20 +65,22 @@ export class ProfileComponent implements OnInit {
 
   changeName(event: any, user: ProfileUser): void {
     if (this.Nameform.status == "VALID") {
-      const profileData = this.Nameform.value;
+      const profileData: ProfileUser = this.Nameform.value;
+      profileData.displayName = this.Nameform.value.firstName + ' ' + this.Nameform.value.lastName
       this.messages = [];
       this.userservice.updateUser(profileData, user.uid)
         .subscribe(
           data => {
             console.log(data);
             // alert('Name updated successfully');
-            this.messages.push(["success", "Full Name updated successfully"]);
+            this.messages.push(["success", "Profile updated successfully"]);
           },
           error => {
             console.log('error: ', error);
             // alert('Error occurred, please try again');
           })
     } else {
+      console.log(this.Nameform.value);
       alert('All fields are required');
     }
 
@@ -69,9 +102,40 @@ export class ProfileComponent implements OnInit {
       if (data != null) {
         this.displayName = data.displayName;
         this.email = this.user$.email;
+        if (data.state != "") {
+          this.states_visibility = true;
+        }
+
+        this.Nameform.setValue(data);
       }
     });
     // this.auth.resetPassword();
+  }
+
+  get firstNamee() {
+    return this.Nameform.get('firstName');
+  }
+
+  get lastNamee() {
+    return this.Nameform.get('lastName');
+  }
+
+  get phonee() {
+    return this.Nameform.get('phone');
+  }
+
+  get addresss() {
+    return this.Nameform.get('address');
+  }
+  get postalCode() {
+    return this.Nameform.get('postal_code');
+  }
+
+  get countryy() {
+    return this.Nameform.get('country');
+  }
+  get statee() {
+    return this.Nameform.get('state');
   }
 
 }
