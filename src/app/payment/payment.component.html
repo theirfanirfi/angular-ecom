@@ -107,7 +107,7 @@
                                             <label data-toggle="tooltip" title=""
                                                 data-original-title="3 digits code on back side of the card">CVV <i
                                                     class="fa fa-question-circle"></i></label>
-                                            <input type="text" formControlName="cvc" class="form-control" required="">
+                                            <input type="number" formControlName="cvc" class="form-control" required="">
                                             <div *ngIf="cvc?.invalid && (cvc?.dirty || cvc?.touched)" class="">
                                                 <div>
                                                     <p style="color:red;">Invalid CVC</p>
