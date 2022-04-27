@@ -15,10 +15,11 @@ export class PaymentComponent implements OnInit {
   total_price: number = 0;
   form = new FormGroup({
     "fullname": new FormControl("", Validators.required),
-    "cardnumber": new FormControl("", Validators.required),
-    "expiry_month": new FormControl("", Validators.required),
-    "expiry_year": new FormControl("", Validators.required),
-    "cvc": new FormControl("", Validators.required),
+    "cardnumber": new FormControl("", [Validators.required, Validators.minLength(16), Validators.maxLength(19),
+    Validators.pattern('^[0-9]+$')]),
+    "expiry_month": new FormControl("", [Validators.required, Validators.minLength(2), Validators.maxLength(2), Validators.pattern('^[0-9]+$')]),
+    "expiry_year": new FormControl("", [Validators.required, Validators.minLength(2), Validators.maxLength(2), Validators.pattern('^[0-9]+$')]),
+    "cvc": new FormControl("", [Validators.required, Validators.minLength(3), Validators.maxLength(3), Validators.pattern('^[0-9]+$')]),
   });
 
   constructor(private router: Router,
@@ -56,6 +57,26 @@ export class PaymentComponent implements OnInit {
     } else {
       alert('All fields are required');
     }
+  }
+
+  get fullname() {
+    return this.form.get('fullname');
+  }
+
+  get cardnumber() {
+    return this.form.get('cardnumber');
+  }
+
+  get expiry_month() {
+    return this.form.get('expiry_month');
+  }
+
+  get expiry_year() {
+    return this.form.get('expiry_year');
+  }
+
+  get cvc() {
+    return this.form.get('cvc');
   }
 
 }

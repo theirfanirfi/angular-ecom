@@ -57,7 +57,6 @@ export class WishListService {
   getProductFromWishtListForHeart(id: any): number {
     let b = false;
     let size = 0;
-    // var wi = this.angualrFire.collection<WishList>('wishlist', ref => ref.where('product_id', '==', id));
     var wi = this.angualrFire.collection<WishList>('wishlist', ref => ref.where('product_id', '==', id));
 
     wi.get().forEach((w) => {
@@ -65,6 +64,7 @@ export class WishListService {
       if (w.size > 0) {
         size = w.size;
         b = true;
+        return
       }
     });
 

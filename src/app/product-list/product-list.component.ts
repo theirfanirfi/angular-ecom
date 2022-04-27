@@ -50,9 +50,9 @@ export class ProductListComponent implements OnInit {
 
   }
 
-  // async check_if_it_is_in_wishlist(product_id: number): boolean {
+  //  check_if_it_is_in_wishlist(product_id: number): boolean {
 
-  //   let heart = await this.wishlist.getProductFromWishtListForHeart(product_id);
+  //   let heart =  this.wishlist.getProductFromWishtListForHeart(product_id);
   //   if (heart) {
   //     return true;
   //   }

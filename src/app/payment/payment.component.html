@@ -14,13 +14,26 @@
     <!-- <hr> -->
 
     <div class="row">
-        <aside class="col-md-2"></aside>
-        <aside class="col-md-8">
+        <aside class="col-md-3"></aside>
+        <aside class="col-md-6">
             <!-- <p>Paymetn form2</p> -->
 
             <article class="card">
                 <div class="card-body">
-
+                    <ul class="nav bg-light nav-pills rounded nav-fill mb-3" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="pill" href="#nav-tab-card">
+                                <i class="fa fa-credit-card"></i> Credit Card</a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" data-toggle="pill" href="#nav-tab-paypal">
+                                <i class="fab fa-paypal"></i> Paypal</a>
+                        </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="pill" href="#nav-tab-bank">
+                                <i class="fa fa-university"></i> Bank Transfer</a>
+                        </li>
+                    </ul>
 
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="nav-tab-card">
@@ -30,6 +43,11 @@
                                     <label for="username">Full name (on the card)</label>
                                     <input type="text" class="form-control" name="username" formControlName="fullname"
                                         placeholder="" required="">
+                                    <div *ngIf="fullname?.invalid && (fullname?.dirty || fullname?.touched)" class="">
+                                        <div>
+                                            <p style="color:red;"> Invalid Full Name</p>
+                                        </div>
+                                    </div>
                                 </div> <!-- form-group.// -->
 
                                 <div class="form-group">
@@ -39,9 +57,17 @@
                                             formControlName="cardnumber" placeholder="">
                                         <div class="input-group-append">
                                             <span class="input-group-text text-muted">
-
+                                                <i class="fab fa-cc-visa"></i>   <i class="fab fa-cc-amex"></i>  
                                                 <i class="fab fa-cc-mastercard"></i>
                                             </span>
+                                        </div>
+
+
+                                    </div>
+                                    <div *ngIf="cardnumber?.invalid && (cardnumber?.dirty || cardnumber?.touched)"
+                                        class="">
+                                        <div>
+                                            <p style="color:red;">Invalid Card Number</p>
                                         </div>
                                     </div>
                                 </div> <!-- form-group.// -->
@@ -51,11 +77,29 @@
                                         <div class="form-group">
                                             <label><span class="hidden-xs">Expiration</span> </label>
                                             <div class="input-group">
-                                                <input type="number" class="form-control" placeholder="MM"
+                                                <input type="text" class="form-control" placeholder="MM"
                                                     formControlName="expiry_month" name="">
-                                                <input type="number" class="form-control" placeholder="YY"
+
+                                                <input type="text" class="form-control" placeholder="YY"
                                                     formControlName="expiry_year" name="">
+
                                             </div>
+
+                                            <div *ngIf="expiry_month?.invalid && (expiry_month?.dirty || expiry_month?.touched)"
+                                                class="">
+                                                <div>
+                                                    <p style="color:red;">Invalid Month</p>
+                                                </div>
+                                            </div>
+
+                                            <div *ngIf="expiry_year?.invalid && (expiry_year?.dirty || expiry_year?.touched)"
+                                                class="">
+                                                <div>
+                                                    <p style="color:red;">Invalid Year</p>
+                                                </div>
+                                            </div>
+
+
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
@@ -63,7 +107,12 @@
                                             <label data-toggle="tooltip" title=""
                                                 data-original-title="3 digits code on back side of the card">CVV <i
                                                     class="fa fa-question-circle"></i></label>
-                                            <input type="number" formControlName="cvc" class="form-control" required="">
+                                            <input type="text" formControlName="cvc" class="form-control" required="">
+                                            <div *ngIf="cvc?.invalid && (cvc?.dirty || cvc?.touched)" class="">
+                                                <div>
+                                                    <p style="color:red;">Invalid CVC</p>
+                                                </div>
+                                            </div>
                                         </div> <!-- form-group.// -->
                                     </div>
                                 </div> <!-- row.// -->
@@ -76,7 +125,8 @@
                                 </div>
 
                                 <button (click)="confirmPayment()" class="subscribe btn btn-primary btn-block"
-                                    type="button"> Confirm </button>
+                                    type="button">
+                                    Confirm </button>
                             </form>
                         </div> <!-- tab-pane.// -->
                         <div class="tab-pane fade" id="nav-tab-paypal">
@@ -114,7 +164,7 @@
 
 
         </aside> <!-- col.// -->
-        <aside class="col-md-2"></aside>
+        <aside class="col-md-6"></aside>
 
     </div> <!-- row.// -->
 
